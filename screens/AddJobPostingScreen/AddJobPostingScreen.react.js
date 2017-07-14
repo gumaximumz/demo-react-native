@@ -2,12 +2,15 @@ import React from 'react';
 
 import {
     Container,
-    Text
+    Item,
+    Content,
+    Input,
+    ListItem
 } from "native-base";
 
 import Picker from 'react-native-picker'
 
-class Add๋JobPostingScreen extends React.Component {
+class AddJobPostingScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,33 +19,44 @@ class Add๋JobPostingScreen extends React.Component {
         }
     }
 
+    showPicker() {
+        console.log('showPicker');
+        let data = [];
+        for (var i = 0; i < 100; i++) {
+            data.push(i);
+        }
+        Picker.init({
+            pickerData: data,
+            selectedValue: [59],
+            onPickerConfirm: data => {
+                console.log(data);
+            },
+            onPickerCancel: data => {
+                console.log(data);
+            },
+            onPickerSelect: data => {
+                console.log(data);
+            }
+        });
+        Picker.show();
+    }
+
     render() {
         let pickerData1 = ['เลือกประเภทงาน', 'ขนของทั่วไป', 'ขนสัตว์เลี้ยง', 'ขนอาหารสำเร็จ', 'ขนอาหารดิบ', 'ขนอาหารเครืองดื่ม'];
         let selectedValue1 = pickerData1[0];
         let pickerData2 = ['เลือกประเภทรถ', 'รถจักรยานยนต์', 'รถเก๋ง', 'รถตู้', 'รถกะบะ', 'รถกะบะแคป', 'รถกะบะ4ประตู', 'รถบรรทุก6ล้อ', 'รถบรรทุก8ล้อ', 'รถบรรทุก10ล้อ'];
         let selectedValue2 = pickerData2[0];
+        
+        console.log('render');
         return (
             <Container style={styles.container}>
-                <Picker
-                    style={{
-                        height: 300
-                    }}
-                    showDuration={300}
-                    showMask={true}
-                    onPickerDone={this.state.job}
-                    pickerData={pickerData1}
-                    selectedValue={selectedValue1}
-                />
-                <Picker
-                    style={{
-                        height: 300
-                    }}
-                    showDuration={300}
-                    showMask={true}
-                    onPickerDone={this.state.car}
-                    pickerData={pickerData2}
-                    selectedValue={selectedValue2}
-                />
+                <Content>
+                    <ListItem onPress={() => this.showPicker()}>
+                        <Item>
+                            <Input placeholder='เลือกประเภทงาน' />
+                        </Item>
+                    </ListItem>
+                </Content>
             </Container>
         );
     }
@@ -61,4 +75,4 @@ const styles = {
     }
 };
 
-export default Add๋JobPostingScreen;
+export default AddJobPostingScreen;
