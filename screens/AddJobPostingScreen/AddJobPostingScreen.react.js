@@ -1,61 +1,131 @@
 import React from 'react';
 
+import { Image } from 'react-native';
+
 import {
     Container,
-    Item,
+    Header,
+    Title,
     Content,
-    Input,
-    ListItem
+    Button,
+    ListItem,
+    Icon,
+    Text,
+    Right,
+    Body,
+    Left,
+    Picker,
+    Form,
+    Item as FormItem,
+    Card,
+    CardItem,
+    Footer,
+    FooterTab,
+    H1,
+    H2,
+    H3,
+    Thumbnail
 } from "native-base";
 
-import Picker from 'react-native-picker'
+import { Col, Row, Grid } from "react-native-easy-grid";
+
+
+//import Picker from 'react-native-picker'
+
+const Item = Picker.Item;
 
 class AddJobPostingScreen extends React.Component {
+    static navigationOptions = {
+        title: 'สร้างประกาศงาน',
+    };
     constructor(props) {
         super(props);
         this.state = {
-            job: '',
-            car: ''
+            jobType: ''
         }
     }
 
-    showPicker() {
-        console.log('showPicker');
-        let data = [];
-        for (var i = 0; i < 100; i++) {
-            data.push(i);
-        }
-        Picker.init({
-            pickerData: data,
-            selectedValue: [59],
-            onPickerConfirm: data => {
-                console.log(data);
-            },
-            onPickerCancel: data => {
-                console.log(data);
-            },
-            onPickerSelect: data => {
-                console.log(data);
-            }
+
+    onValueChange1(value) {
+        this.setState({
+            job: value
         });
-        Picker.show();
     }
 
     render() {
-        let pickerData1 = ['เลือกประเภทงาน', 'ขนของทั่วไป', 'ขนสัตว์เลี้ยง', 'ขนอาหารสำเร็จ', 'ขนอาหารดิบ', 'ขนอาหารเครืองดื่ม'];
-        let selectedValue1 = pickerData1[0];
-        let pickerData2 = ['เลือกประเภทรถ', 'รถจักรยานยนต์', 'รถเก๋ง', 'รถตู้', 'รถกะบะ', 'รถกะบะแคป', 'รถกะบะ4ประตู', 'รถบรรทุก6ล้อ', 'รถบรรทุก8ล้อ', 'รถบรรทุก10ล้อ'];
-        let selectedValue2 = pickerData2[0];
-        
+        const { navigate } = this.props.navigation;
+        let pickerData1 = ['ขนของทั่วไป', 'ขนสัตว์เลี้ยง', 'ขนอาหารสำเร็จ', 'ขนอาหารดิบ', 'ขนอาหารเครืองดื่ม'];
+        let serviceItems = pickerData1.map((s, i) => {
+            return <Item key={i} value={s} label={s} />
+        });
+
         console.log('render');
         return (
             <Container style={styles.container}>
                 <Content>
-                    <ListItem onPress={() => this.showPicker()}>
-                        <Item>
-                            <Input placeholder='เลือกประเภทงาน' />
-                        </Item>
-                    </ListItem>
+                    <Body style={{ alignItems: 'center' }}>
+                        <Text style={{ fontSize: 25 }}>เลือกประเภทงานสำหรับประกาศของคุณ</Text>
+                        <Text>การเลือกประเภทงานที่ถูกต้องจะช่วยให้ประกาศของคุณปรากฎใน</Text>
+                        <Text>ผลการค้นหา</Text>
+                    </Body>
+                    <Grid>
+                        <Row>
+                            <Col>
+                                <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                                <Text>ขนเครืองใช้ทั่วไป</Text>
+                            </Col>
+                            <Col>
+                                <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                                <Text>ขนเครืองใช้โรงงาน</Text>
+                            </Col>
+                            <Col>
+                                <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                                <Text>ขนอาหาร</Text>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Thumbnail onPress={() =>
+                                    navigate('AddJobPost2', this.state)
+                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                                <Text>ขนเครืองใช้ทั่วไป</Text>
+                            </Col>
+                            <Col>
+                                <Thumbnail onPress={() =>
+                                    navigate('AddJobPost2', this.state)
+                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                                <Text>ขนเครืองใช้โรงงาน</Text>
+                            </Col>
+                            <Col>
+                                <Thumbnail onPress={() =>
+                                    navigate('AddJobPost2', this.state)
+                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                                <Text>ขนอาหาร</Text>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Thumbnail onPress={() =>
+                                    navigate('AddJobPost2', this.state)
+                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                                <Text>ขนเครืองใช้ทั่วไป</Text>
+                            </Col>
+                            <Col>
+                                <Thumbnail onPress={() =>
+                                    navigate('AddJobPost2', this.state)
+                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                                <Text>ขนเครืองใช้โรงงาน</Text>
+                            </Col>
+                            <Col>
+                                <Thumbnail onPress={() =>
+                                    navigate('AddJobPost2', this.state)
+                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                                <Text>ขนอาหาร</Text>
+                            </Col>
+                        </Row>
+
+                    </Grid>
+
                 </Content>
             </Container>
         );
@@ -64,7 +134,10 @@ class AddJobPostingScreen extends React.Component {
 
 const styles = {
     container: {
-        backgroundColor: "#FFF"
+        backgroundColor: "#FFF",
+    },
+    center: {
+        textAlign: 'center'
     },
     text: {
         alignSelf: "center",
@@ -72,6 +145,11 @@ const styles = {
     },
     mb: {
         marginBottom: 15
+    },
+    image: {
+        height: 100,
+        width: 100,
+        flex: 1
     }
 };
 

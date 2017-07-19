@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation';
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import AddJobPostingScreen from '../screens/AddJobPostingScreen/AddJobPostingScreen.react';
+import AddJobPostingScreen2 from '../screens/AddJobPostingScreen/AddJobPostingScreen2.react';
 //import HomeScreen from '../screens/HomeScreen';
 
 const RootStackNavigator = StackNavigator(
@@ -14,6 +15,9 @@ const RootStackNavigator = StackNavigator(
     },
     AddJobPost: {
       screen: AddJobPostingScreen,
+    },
+    AddJobPost2: {
+      screen: AddJobPostingScreen2,
     },
   },
   {

@@ -30,7 +30,7 @@ const Item = Picker.Item;
 
 class MenuScreen extends React.Component {
     static navigationOptions = {
-        header: null,
+
     };
     constructor(props) {
         super(props);
@@ -53,13 +53,6 @@ class MenuScreen extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <Container style={styles.container}>
-                <Header>
-                    <Body>
-                        <Title>เมนู</Title>
-                    </Body>
-                    <Right />
-                </Header>
-
                 <Content>
                     <Separator bordered noTopBorder />
                     <ListItem icon>
@@ -98,7 +91,7 @@ class MenuScreen extends React.Component {
                         }>
                         <Left>
                             <Button style={{ backgroundColor: "#FD3C2D" }}>
-                                <Icon active name="bullhorn" />
+                                <Icon active name="images" />
                             </Button>
                         </Left>
                         <Body>
@@ -112,7 +105,7 @@ class MenuScreen extends React.Component {
                     <ListItem icon>
                         <Left>
                             <Button style={{ backgroundColor: "#8F8E93" }}>
-                                <Icon active name="arrow-forward" />
+                                <Icon active name="images" />
                             </Button>
                         </Left>
                         <Body>
@@ -127,7 +120,7 @@ class MenuScreen extends React.Component {
                     <ListItem icon>
                         <Left>
                             <Button style={{ backgroundColor: "#8F8E93" }}>
-                                <Icon active name="checkbox-blank-outline" />
+                                <Icon active name="images" />
                             </Button>
                         </Left>
                         <Body>
@@ -140,7 +133,7 @@ class MenuScreen extends React.Component {
                     <ListItem icon>
                         <Left>
                             <Button style={{ backgroundColor: "#8F8E93" }}>
-                                <Icon active name="checkbox-marked-outline" />
+                                <Icon active name="images" />
                             </Button>
                         </Left>
                         <Body>
@@ -153,7 +146,7 @@ class MenuScreen extends React.Component {
                     <ListItem icon>
                         <Left>
                             <Button style={{ backgroundColor: "#8F8E93" }}>
-                                <Icon active name="truck" />
+                                <Icon active name="images" />
                             </Button>
                         </Left>
                         <Body>
@@ -211,8 +204,8 @@ class MenuScreen extends React.Component {
                     </ListItem>
                     <Separator bordered />
                     <ListItem>
-                        <Body>
-                            <Text>ออกจากระบบ</Text>
+                        <Body style={{ alignItems: 'center' }}>
+                            <Text  style={{ color: '#FD3C2D' }}>ออกจากระบบ</Text>
                         </Body>
                     </ListItem>
                 </Content>

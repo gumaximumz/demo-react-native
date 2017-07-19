@@ -2,19 +2,23 @@
  * @flow
  */
 
-import React from 'react';
-import { FontAwesome } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import React from 'react'
+import { FontAwesome } from '@expo/vector-icons'
+import { TabNavigator, TabBarBottom } from 'react-navigation'
 
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors'
 
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import MenuScreen from '../screens/MenuScreen/MenuScreen.react';
+import HomeScreen from '../screens/HomeScreen'
+import LinksScreen from '../screens/LinksScreen'
+import SettingsScreen from '../screens/SettingsScreen'
+import MenuScreen from '../screens/MenuScreen/MenuScreen.react'
+import WallScreen from '../screens/WallScreen'
 
 export default TabNavigator(
   {
+    Wall: {
+      screen: WallScreen
+    },
     Home: {
       screen: HomeScreen,
     },
@@ -26,7 +30,7 @@ export default TabNavigator(
     },
     Menu: {
       screen: MenuScreen,
-    },
+    }
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -34,7 +38,11 @@ export default TabNavigator(
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
         let iconName;
+
         switch (routeName) {
+          case 'Wall':
+            iconName = 'newspaper-o';
+            break;
           case 'Home':
             iconName = 'users';
             break;
@@ -48,6 +56,7 @@ export default TabNavigator(
             iconName = 'bars';
             break;
         }
+
         return (
           <FontAwesome
             name={iconName}
