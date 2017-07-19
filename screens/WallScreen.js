@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Icon, Input, Button, Header, Item } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 class WallScreen extends React.Component {
     static navigationOptions = {
-
+        header: null,
     };
     constructor(props) {
         super(props);
@@ -121,8 +121,8 @@ class WallScreen extends React.Component {
             price: '1000 - 1500'
         }];
 
-        let serviceGrid = data.map((s) => {
-            let points = [];
+        let serviceGrid = data.map((s, k) => {
+            let points = [5];
             for (let i = 0; i < 5; i++) {
                 if (s.point > i)
                     points[i] = <Icon fontSize={5} active name="star" style={{
@@ -133,7 +133,7 @@ class WallScreen extends React.Component {
             }
 
             return (
-                <ListItem avatar>
+                <ListItem avatar key={k}>
                     <Left>
                         <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
                     </Left>
@@ -166,14 +166,30 @@ class WallScreen extends React.Component {
                     </Body>
                 </ListItem>)
         });
+        
         return (
             <Container>
+                <Header searchBar
+                    rounded
+                    backgroundColor='#80C67D'
+                    androidStatusBarColor='#80C67D'>
+
+                    <Item>
+                        <Icon name="ios-search" />
+                        <Input placeholder="ค้นหา" />
+                        <Icon name="ios-people" />
+                    </Item>
+                    <Button transparent>
+                        <Text>Search</Text>
+                    </Button>
+                </Header>
+
                 <Content>
                     <List>
                         {serviceGrid}
                     </List>
                 </Content>
-            </Container>
+            </Container >
 
         )
 

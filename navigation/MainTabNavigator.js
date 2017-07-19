@@ -63,17 +63,22 @@ export default TabNavigator(
             size={32}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
           />
+
         );
       },
     }),
+
     // Put tab bar on bottom of screen on both platforms
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     // Disable animation so that iOS/Android have same behaviors
-    animationEnabled: false,
+    animationEnabled: true,
     // Don't show the labels
     tabBarOptions: {
       showLabel: false,
+      style: {
+        backgroundColor: '#80C67D',
+      }
     },
   }
 );

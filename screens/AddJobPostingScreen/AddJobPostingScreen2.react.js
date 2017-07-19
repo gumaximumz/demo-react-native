@@ -23,70 +23,99 @@ import {
     FooterTab,
     H1,
     H2,
-    H3
+    H3,
+    Thumbnail,
+    Input,
+    Item
 } from "native-base";
 
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 
-//import Picker from 'react-native-picker'
-
-const Item = Picker.Item;
-
 class AddJobPostingScreen2 extends React.Component {
     static navigationOptions = {
-        title: 'สร้างประกาศงาน',
+        title: 'เลือกประเภทรถ',
     };
+    colNumber = 3;
+
+
     constructor(props) {
         super(props);
         this.state = {
-            job: '',
-            car: ''
+            jobType: props.navigation.state.params,
+            carType: ''
         }
     }
 
 
-    onValueChange1(value) {
+    onValueChange(navigate, value) {
         this.setState({
-            job: value
+            carType: value
         });
+        navigate('AddJobPost2', this.state)
     }
 
     render() {
-        let pickerData1 = ['รถจักรยานยนต์', 'รถเก๋ง', 'รถตู้', 'รถกะบะ', 'รถกะบะแคป', 'รถกะบะ4ประตู', 'รถบรรทุก6ล้อ', 'รถบรรทุก8ล้อ', 'รถบรรทุก10ล้อ'];
+        console.log(this.state.jobType)
+        const { navigate } = this.props.navigation
+        let lists = ['รถจักรยานยนต์', 'รถเก๋ง', 'รถตู้', 'รถกะบะ', 'รถกะบะแคป', 'รถกะบะ4ประตู', 'รถบรรทุก6ล้อ', 'รถบรรทุก8ล้อ', 'รถบรรทุก10ล้อ'];
 
-        let serviceItems = pickerData1.map((s, i) => {
-            return <Item key={i} value={s} label={s} />
+        let row = +(lists.length / this.colNumber).toFixed(0)
+        let elementRow = [row];
+        for (let i = 0; i < row; i++) {
+            let listSubSet = lists.slice(i * this.colNumber, (i + 1) * this.colNumber);
+            let elementCol = listSubSet.map((s) => {
+                return (
+                    <Col>
+                        <Button transparent
+                            style={styles.image}
+                            onPress={() =>
+                                this.onValueChange(navigate, s)
+                            }>
+                            <Thumbnail square large source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                        </Button>
+                        <Text style={{ textAlign: 'center' }}>{s}</Text>
+                    </Col>)
+            })
+            if (elementCol.length < this.colNumber) {
+                let plusColNumber = this.colNumber - elementCol.length
+                for (let i = 0; i < plusColNumber; i++)
+                    elementCol.push(<Col></Col>)
+            }
+            elementRow[i] = elementCol
+        }
+
+        let serviceItems = elementRow.map((s) => {
+            return (<Row>{s}</Row>)
         });
 
         console.log('render');
         return (
             <Container style={styles.container}>
                 <Content>
-                    <Body style={{ alignItems: 'center' }}>
-                        <Grid>
-                            <Row>
-                                <Col>
-                                    <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                </Col>
-                                <Col>
-                                    <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                </Col>
-                                <Col>
-                                    <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                </Col>
-                            </Row>
-                        </Grid>
+                    <Body>
+                        <Text style={{ fontSize: 25, lineHeight: 60 }}>เลือกประเภทรถสำหรับประกาศของคุณ</Text>
                     </Body>
-
+                    <Text style={{ lineHeight: 60 }} />
+                    <Grid >
+                        {serviceItems}
+                    </Grid>
+                    <Text style={{ borderTopWidth: 25 }} />
+                    <Item>
+                        <Input placeholder='อื่นๆ ระบุ...' 
+                        onChangeText={(text) => this.setState({carType: text})} 
+                        value={this.state.carType}
+                        />
+                    </Item>
+                    <Text style={{ borderTopWidth: 25 }} />
+                    <Button rounded block
+                        style={{ backgroundColor: "#80C67D" }}
+                        onPress={() =>
+                            navigate('AddJobPost2', this.state)
+                        }>
+                        <H3 style={{ color: "#fff" }}>{this.state.carType != '' ? 'ถัดไป' : 'ข้าม'}</H3>
+                    </Button>
                 </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button rounded block success>
-                            <H3>ถัดไป</H3>
-                        </Button>
-                    </FooterTab>
-                </Footer>
             </Container>
         );
     }
@@ -95,6 +124,7 @@ class AddJobPostingScreen2 extends React.Component {
 const styles = {
     container: {
         backgroundColor: "#FFF",
+        alignItems: 'center',
     },
     center: {
         textAlign: 'center'
@@ -107,9 +137,8 @@ const styles = {
         marginBottom: 15
     },
     image: {
-        height: 300,
-        width: null,
-        flex: 1
+        height: 100,
+        width: 100,
     }
 };
 

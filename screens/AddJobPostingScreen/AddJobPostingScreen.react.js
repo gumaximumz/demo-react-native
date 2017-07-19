@@ -24,20 +24,20 @@ import {
     H1,
     H2,
     H3,
-    Thumbnail
+    Thumbnail,
+    Input,
+    Item
 } from "native-base";
 
 import { Col, Row, Grid } from "react-native-easy-grid";
-
-
-//import Picker from 'react-native-picker'
-
-const Item = Picker.Item;
 
 class AddJobPostingScreen extends React.Component {
     static navigationOptions = {
         title: 'สร้างประกาศงาน',
     };
+    colNumber = 3;
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -45,87 +45,66 @@ class AddJobPostingScreen extends React.Component {
         }
     }
 
-
-    onValueChange1(value) {
-        this.setState({
-            job: value
-        });
-    }
-
     render() {
-        const { navigate } = this.props.navigation;
-        let pickerData1 = ['ขนของทั่วไป', 'ขนสัตว์เลี้ยง', 'ขนอาหารสำเร็จ', 'ขนอาหารดิบ', 'ขนอาหารเครืองดื่ม'];
-        let serviceItems = pickerData1.map((s, i) => {
-            return <Item key={i} value={s} label={s} />
+        const { navigate } = this.props.navigation
+        let lists = ['ขนของทั่วไป', 'ขนสัตว์เลี้ยง', 'ขนอาหารสำเร็จ', 'ขนอาหารดิบ', 'ขนอาหารเครืองดื่ม', 'ขนสารเคมี', 'ขนวัตถุอันตราย', 'ขนวัตถุไวไฟ']
+        let row = +(lists.length / this.colNumber).toFixed(0)
+        let elementRow = [row];
+        for (let i = 0; i < row; i++) {
+            let listSubSet = lists.slice(i * this.colNumber, (i + 1) * this.colNumber);
+            let elementCol = listSubSet.map((s) => {
+                return (
+                    <Col>
+                        <Button transparent
+                            style={styles.image}
+                            onPress={() =>
+                                navigate('AddJobPost2', s)
+                            }>
+                            <Thumbnail square large source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                        </Button>
+                        <Text style={{ textAlign: 'center' }}>{s}</Text>
+                    </Col>)
+            })
+            if (elementCol.length < this.colNumber) {
+                let plusColNumber = this.colNumber - elementCol.length
+                for (let i = 0; i < plusColNumber; i++)
+                    elementCol.push(<Col></Col>)
+            }
+            elementRow[i] = elementCol
+        }
+
+        let serviceItems = elementRow.map((s) => {
+            return (<Row>{s}</Row>)
         });
 
         console.log('render');
         return (
             <Container style={styles.container}>
                 <Content>
-                    <Body style={{ alignItems: 'center' }}>
-                        <Text style={{ fontSize: 25 }}>เลือกประเภทงานสำหรับประกาศของคุณ</Text>
-                        <Text>การเลือกประเภทงานที่ถูกต้องจะช่วยให้ประกาศของคุณปรากฎใน</Text>
-                        <Text>ผลการค้นหา</Text>
+                    <Body>
+                        <Text style={{ fontSize: 25, lineHeight: 60 }}>เลือกประเภทงานสำหรับประกาศของคุณ</Text>
+                        <Text style={{ textAlign: 'center' }}>การเลือกประเภทงานที่ถูกต้องจะช่วยให้ประกาศของคุณปรากฎใน</Text>
+                        <Text style={{ textAlign: 'center' }}>ผลการค้นหา</Text>
                     </Body>
-                    <Grid>
-                        <Row>
-                            <Col>
-                                <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                <Text>ขนเครืองใช้ทั่วไป</Text>
-                            </Col>
-                            <Col>
-                                <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                <Text>ขนเครืองใช้โรงงาน</Text>
-                            </Col>
-                            <Col>
-                                <Thumbnail style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                <Text>ขนอาหาร</Text>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Thumbnail onPress={() =>
-                                    navigate('AddJobPost2', this.state)
-                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                <Text>ขนเครืองใช้ทั่วไป</Text>
-                            </Col>
-                            <Col>
-                                <Thumbnail onPress={() =>
-                                    navigate('AddJobPost2', this.state)
-                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                <Text>ขนเครืองใช้โรงงาน</Text>
-                            </Col>
-                            <Col>
-                                <Thumbnail onPress={() =>
-                                    navigate('AddJobPost2', this.state)
-                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                <Text>ขนอาหาร</Text>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Thumbnail onPress={() =>
-                                    navigate('AddJobPost2', this.state)
-                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                <Text>ขนเครืองใช้ทั่วไป</Text>
-                            </Col>
-                            <Col>
-                                <Thumbnail onPress={() =>
-                                    navigate('AddJobPost2', this.state)
-                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                <Text>ขนเครืองใช้โรงงาน</Text>
-                            </Col>
-                            <Col>
-                                <Thumbnail onPress={() =>
-                                    navigate('AddJobPost2', this.state)
-                                } style={styles.image} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
-                                <Text>ขนอาหาร</Text>
-                            </Col>
-                        </Row>
-
+                    <Text style={{ lineHeight: 60 }} />
+                    <Grid >
+                        {serviceItems}
                     </Grid>
-
+                    <Text style={{ borderTopWidth: 25 }} />
+                    <Item>
+                        <Input placeholder='อื่นๆ ระบุ...' 
+                        onChangeText={(text) => this.setState({jobType: text})} 
+                        value={this.state.jobType}
+                        />
+                    </Item>
+                    <Text style={{ borderTopWidth: 25 }} />
+                    <Button rounded block
+                        style={{ backgroundColor: "#80C67D" }}
+                        onPress={() =>
+                            navigate('AddJobPost2', this.state.jobType)
+                        }>
+                        <H3 style={{ color: "#fff" }}>ถัดไป</H3>
+                    </Button>
                 </Content>
             </Container>
         );
@@ -135,6 +114,7 @@ class AddJobPostingScreen extends React.Component {
 const styles = {
     container: {
         backgroundColor: "#FFF",
+        alignItems: 'center',
     },
     center: {
         textAlign: 'center'
@@ -149,7 +129,6 @@ const styles = {
     image: {
         height: 100,
         width: 100,
-        flex: 1
     }
 };
 

@@ -30,7 +30,7 @@ const Item = Picker.Item;
 
 class MenuScreen extends React.Component {
     static navigationOptions = {
-
+        header: null,
     };
     constructor(props) {
         super(props);
