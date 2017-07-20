@@ -52,7 +52,7 @@ class AddJobPostingScreen2 extends React.Component {
         this.setState({
             carType: value
         });
-        navigate('AddJobPost2', this.state)
+        navigate('AddJobPost3', this.state)
     }
 
     render() {
@@ -111,7 +111,7 @@ class AddJobPostingScreen2 extends React.Component {
                     <Button rounded block
                         style={{ backgroundColor: "#80C67D" }}
                         onPress={() =>
-                            navigate('AddJobPost2', this.state)
+                            navigate('AddJobPost3', this.state)
                         }>
                         <H3 style={{ color: "#fff" }}>{this.state.carType != '' ? 'ถัดไป' : 'ข้าม'}</H3>
                     </Button>

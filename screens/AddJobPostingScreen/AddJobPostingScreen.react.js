@@ -92,9 +92,9 @@ class AddJobPostingScreen extends React.Component {
                     </Grid>
                     <Text style={{ borderTopWidth: 25 }} />
                     <Item>
-                        <Input placeholder='อื่นๆ ระบุ...' 
-                        onChangeText={(text) => this.setState({jobType: text})} 
-                        value={this.state.jobType}
+                        <Input placeholder='อื่นๆ ระบุ...'
+                            onChangeText={(text) => this.setState({ jobType: text })}
+                            value={this.state.jobType}
                         />
                     </Item>
                     <Text style={{ borderTopWidth: 25 }} />
@@ -112,6 +112,7 @@ class AddJobPostingScreen extends React.Component {
 }
 
 const styles = {
+    
     container: {
         backgroundColor: "#FFF",
         alignItems: 'center',
