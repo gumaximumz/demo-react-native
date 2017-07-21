@@ -94,20 +94,20 @@ class AddJobPostingScreen2 extends React.Component {
             <Container style={styles.container}>
                 <Content>
                     <Body>
-                        <Text style={{ fontSize: 25, lineHeight: 60 }}>เลือกประเภทรถสำหรับประกาศของคุณ</Text>
+                        <H2 style={{ lineHeight: 30, textAlign: 'center' }}>เลือกประเภทรถสำหรับประกาศของคุณ</H2>
                     </Body>
-                    <Text style={{ lineHeight: 60 }} />
+                    <Text />
                     <Grid >
                         {serviceItems}
                     </Grid>
-                    <Text style={{ borderTopWidth: 25 }} />
+                    <Text/>
                     <Item>
                         <Input placeholder='อื่นๆ ระบุ...' 
                         onChangeText={(text) => this.setState({carType: text})} 
                         value={this.state.carType}
                         />
                     </Item>
-                    <Text style={{ borderTopWidth: 25 }} />
+                    <Text/>
                     <Button rounded block
                         style={{ backgroundColor: "#80C67D" }}
                         onPress={() =>
@@ -124,7 +124,6 @@ class AddJobPostingScreen2 extends React.Component {
 const styles = {
     container: {
         backgroundColor: "#FFF",
-        alignItems: 'center',
     },
     center: {
         textAlign: 'center'
@@ -139,6 +138,7 @@ const styles = {
     image: {
         height: 100,
         width: 100,
+        alignSelf: "center",
     }
 };
 

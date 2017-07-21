@@ -93,7 +93,6 @@ class AddJobPostingScreen3 extends React.Component {
                             <Input />
                         </Item>
                     </Form>
-                    <Text style={{ borderTopWidth: 25 }} />
                     <Button rounded block
                         style={{ backgroundColor: "#80C67D" }}
                         onPress={() =>

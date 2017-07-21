@@ -52,15 +52,18 @@ class AddJobPostingScreen extends React.Component {
         let elementRow = [row];
         for (let i = 0; i < row; i++) {
             let listSubSet = lists.slice(i * this.colNumber, (i + 1) * this.colNumber);
-            let elementCol = listSubSet.map((s) => {
+            let elementCol = listSubSet.map((s, k) => {
                 return (
                     <Col>
                         <Button transparent
+                            id={k}
                             style={styles.image}
                             onPress={() =>
                                 navigate('AddJobPost2', s)
                             }>
-                            <Thumbnail square large source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                            <Thumbnail square large
+                                size={80}
+                                source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
                         </Button>
                         <Text style={{ textAlign: 'center' }}>{s}</Text>
                     </Col>)
@@ -73,31 +76,30 @@ class AddJobPostingScreen extends React.Component {
             elementRow[i] = elementCol
         }
 
-        let serviceItems = elementRow.map((s) => {
-            return (<Row>{s}</Row>)
+        let serviceItems = elementRow.map((s, k) => {
+            return (<Row id={k}>{s}</Row>)
         });
 
         console.log('render');
         return (
             <Container style={styles.container}>
                 <Content>
-                    <Body>
-                        <Text style={{ fontSize: 25, lineHeight: 60 }}>เลือกประเภทงานสำหรับประกาศของคุณ</Text>
-                        <Text style={{ textAlign: 'center' }}>การเลือกประเภทงานที่ถูกต้องจะช่วยให้ประกาศของคุณปรากฎใน</Text>
-                        <Text style={{ textAlign: 'center' }}>ผลการค้นหา</Text>
-                    </Body>
-                    <Text style={{ lineHeight: 60 }} />
+                    <H1 style={{ lineHeight: 30, textAlign: 'center' }}>เลือกประเภทงานสำหรับประกาศของคุณ{"\n"}</H1>
+                    <Text style={{ lineHeight: 20, textAlign: 'center' }}>การเลือกประเภทงานที่ถูกต้องจะช่วยให้ประกาศของคุณปรากฎในผลการค้นหา</Text>
+
+                    <Text />
+
                     <Grid >
                         {serviceItems}
                     </Grid>
-                    <Text style={{ borderTopWidth: 25 }} />
+                    <Text />
                     <Item>
                         <Input placeholder='อื่นๆ ระบุ...'
                             onChangeText={(text) => this.setState({ jobType: text })}
                             value={this.state.jobType}
                         />
                     </Item>
-                    <Text style={{ borderTopWidth: 25 }} />
+                    <Text />
                     <Button rounded block
                         style={{ backgroundColor: "#80C67D" }}
                         onPress={() =>
@@ -112,10 +114,13 @@ class AddJobPostingScreen extends React.Component {
 }
 
 const styles = {
-    
+    header: {
+        height: 200,
+        backgroundColor: "#FFF",
+    },
+
     container: {
         backgroundColor: "#FFF",
-        alignItems: 'center',
     },
     center: {
         textAlign: 'center'
@@ -130,6 +135,13 @@ const styles = {
     image: {
         height: 100,
         width: 100,
+        alignSelf: "center",
+    },
+    lineSmall: {
+        lineheight: '150%'
+    },
+    lineBig: {
+        lineheight: '200%'
     }
 };
 
