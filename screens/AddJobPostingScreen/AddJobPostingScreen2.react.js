@@ -56,7 +56,6 @@ class AddJobPostingScreen2 extends React.Component {
     }
 
     render() {
-        console.log(this.state.jobType)
         const { navigate } = this.props.navigation
         let lists = ['รถจักรยานยนต์', 'รถเก๋ง', 'รถตู้', 'รถกะบะ', 'รถกะบะแคป', 'รถกะบะ4ประตู', 'รถบรรทุก6ล้อ', 'รถบรรทุก8ล้อ', 'รถบรรทุก10ล้อ'];
 

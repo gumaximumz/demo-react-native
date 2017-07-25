@@ -39,8 +39,6 @@ class AddJobPostingScreen3 extends React.Component {
     static navigationOptions = {
         title: 'ต้นทาง-ปลายทาง',
     };
-    colNumber = 3;
-
 
     constructor(props) {
         super(props)
@@ -48,6 +46,7 @@ class AddJobPostingScreen3 extends React.Component {
             jobType: props.navigation.state.params.jobType,
             carType: props.navigation.state.params.carType,
             source: {
+                name:'',
                 latitude: 13.903142,
                 longitude: 100.519010
             },
@@ -57,10 +56,6 @@ class AddJobPostingScreen3 extends React.Component {
             }
         }
         console.log(this.state)
-    }
-
-    onRegionChange(region) {
-        this.setState({ region });
     }
 
     render() {
@@ -83,22 +78,28 @@ class AddJobPostingScreen3 extends React.Component {
                             coordinate={this.state.destination}
                         />
                     </MapView>
+
                     <Form>
-                        <Item floatingLabel>
+                        <Item>
                             <Label>ต้นทาง</Label>
-                            <Input />
+                            <Input
+                                onChangeText={(text) => this.setState({ source:{name: text }})}
+                                value={this.state.source.name} />
                         </Item>
-                        <Item floatingLabel last>
+                        <Item>
                             <Label>ปลายทาง</Label>
-                            <Input />
+                            <Input
+                                onChangeText={(text) => this.setState({ destination:{name: text }})}
+                                value={this.state.destination.name} />
                         </Item>
                     </Form>
+                    <Text />
                     <Button rounded block
                         style={{ backgroundColor: "#80C67D" }}
                         onPress={() =>
-                            navigate('AddJobPost3', this.state)
+                            navigate('AddJobPost4', this.state)
                         }>
-                        <H3 style={{ color: "#fff" }}>{this.state.carType != '' ? 'ถัดไป' : 'ข้าม'}</H3>
+                        <H3 style={{ color: "#fff" }}>{this.state.source || this.state.destination ? 'ถัดไป' : 'ข้าม'}</H3>
                     </Button>
                 </Content>
             </Container>

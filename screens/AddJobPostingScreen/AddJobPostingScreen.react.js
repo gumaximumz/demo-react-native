@@ -109,7 +109,7 @@ class AddJobPostingScreen extends React.Component {
                     </Button>
                 </Content>
             </Container>
-        );
+        )
     }
 }
 
