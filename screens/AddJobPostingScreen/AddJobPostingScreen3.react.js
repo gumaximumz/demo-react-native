@@ -46,7 +46,6 @@ class AddJobPostingScreen3 extends React.Component {
             jobType: props.navigation.state.params.jobType,
             carType: props.navigation.state.params.carType,
             source: {
-                name:'',
                 latitude: 13.903142,
                 longitude: 100.519010
             },
@@ -60,7 +59,6 @@ class AddJobPostingScreen3 extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation
-        console.log('render');
         return (
             <Container style={styles.container}>
                 <Content>

@@ -52,7 +52,8 @@ class AddJobPostingScreen2 extends React.Component {
         this.setState({
             carType: value
         });
-        navigate('AddJobPost3', this.state)
+        navigate('AddJobPost3', {jobType: this.state.jobType,
+            carType: value})
     }
 
     render() {
@@ -88,7 +89,7 @@ class AddJobPostingScreen2 extends React.Component {
             return (<Row>{s}</Row>)
         });
 
-        console.log('render');
+        let other;
         return (
             <Container style={styles.container}>
                 <Content>
@@ -99,18 +100,18 @@ class AddJobPostingScreen2 extends React.Component {
                     <Grid >
                         {serviceItems}
                     </Grid>
-                    <Text/>
+                    <Text />
                     <Item>
-                        <Input placeholder='อื่นๆ ระบุ...' 
-                        onChangeText={(text) => this.setState({carType: text})} 
-                        value={this.state.carType}
+                        <Input placeholder='อื่นๆ ระบุ...'
+                            onChangeText={(text) => other = text}
+                            value={other}
                         />
                     </Item>
-                    <Text/>
+                    <Text />
                     <Button rounded block
                         style={{ backgroundColor: "#80C67D" }}
                         onPress={() =>
-                            navigate('AddJobPost3', this.state)
+                            this.onValueChange(navigate, other)
                         }>
                         <H3 style={{ color: "#fff" }}>{this.state.carType != '' ? 'ถัดไป' : 'ข้าม'}</H3>
                     </Button>

@@ -64,10 +64,8 @@ class AddJobPostingScreen3 extends React.Component {
     _hideStartDatePicker = () => this.setState({ isStartDatePickerVisible: false });
 
     _handleStartDate = (date) => {
-        console.log(date)
         let startDate = moment(new Date(date)).format('DD/MM/YYYY')
         this.setState({ startDate: startDate })
-        console.log(this.state)
         this._hideStartDatePicker()
     }
 
@@ -77,10 +75,8 @@ class AddJobPostingScreen3 extends React.Component {
     _hideStartTimePicker = () => this.setState({ isStartTimePickerVisible: false });
 
     _handleStartTime = (time) => {
-        console.log(time)
         let startTime = moment(new Date(time)).format('HH:mm')
         this.setState({ startTime: startTime })
-        console.log(this.state)
         this._hideStartTimePicker()
     }
 
@@ -90,10 +86,8 @@ class AddJobPostingScreen3 extends React.Component {
     _hideEndDatePicker = () => this.setState({ isEndDatePickerVisible: false });
 
     _handleEndDate = (date) => {
-        console.log(date)
         let EndDate = moment(new Date(date)).format('DD/MM/YYYY')
         this.setState({ endDate: EndDate })
-        console.log(this.state)
         this._hideEndDatePicker()
     };
 
@@ -102,10 +96,8 @@ class AddJobPostingScreen3 extends React.Component {
     _hideEndTimePicker = () => this.setState({ isEndTimePickerVisible: false });
 
     _handleEndTime = (time) => {
-        console.log(time)
         let endTime = moment(new Date(time)).format('HH:mm')
         this.setState({ endTime: endTime })
-        console.log(this.state)
         this._hideEndTimePicker()
     }
 
@@ -118,91 +110,130 @@ class AddJobPostingScreen3 extends React.Component {
                     <Text />
                     <H3 style={styles.head}>วัน/เวลา ที่ถึง</H3>
                     <Form>
+
                         <Item>
-                            <Label>ต้นทาง</Label>
-                            <Button iconRight transparent onPress={this._showStartDatePicker}>
-                                <Text>{this.state.startDate}</Text>
-                                <Icon name='arrow-down' />
-                            </Button>
-                            <DateTimePicker
-                                isVisible={this.state.isStartDatePickerVisible}
-                                onConfirm={this._handleStartDate}
-                                onCancel={this._hideStartDatePicker}
-                            />
-                            <Button iconRight transparent onPress={this._showStartTimePicker}>
-                                <Text>{this.state.startTime}</Text>
-                                <Icon name='arrow-down' />
-                            </Button>
-                            <DateTimePicker
-                                isVisible={this.state.isStartTimePickerVisible}
-                                onConfirm={this._handleStartTime}
-                                onCancel={this._hideStartTimePicker}
-                                mode='time'
-                            />
+                            <Col>
+                                <Label>ต้นทาง</Label>
+                            </Col>
+                            <Col >
+
+                                <Button iconRight transparent onPress={this._showStartDatePicker}>
+                                    <Text>{this.state.startDate}</Text>
+                                    <Icon name='arrow-down' />
+                                </Button>
+                                <DateTimePicker
+                                    isVisible={this.state.isStartDatePickerVisible}
+                                    onConfirm={this._handleStartDate}
+                                    onCancel={this._hideStartDatePicker}
+                                />
+
+                                <Button iconRight transparent onPress={this._showStartTimePicker}>
+                                    <Text>{this.state.startTime}</Text>
+                                    <Icon name='arrow-down' />
+                                </Button>
+                                <DateTimePicker
+                                    isVisible={this.state.isStartTimePickerVisible}
+                                    onConfirm={this._handleStartTime}
+                                    onCancel={this._hideStartTimePicker}
+                                    mode='time'
+                                />
+
+                            </Col>
                         </Item>
+
                         <Item>
-                            <Label>ปลายทาง</Label>
-                            <Button iconRight transparent onPress={this._showEndDatePicker}>
-                                <Text>{this.state.endDate}</Text>
-                                <Icon name='arrow-down' />
-                            </Button>
-                            <DateTimePicker
-                                isVisible={this.state.isEndDatePickerVisible}
-                                onConfirm={this._handleEndDate}
-                                onCancel={this._hideEndDatePicker}
-                            />
-                            <Button iconRight transparent onPress={this._showEndTimePicker}>
-                                <Text>{this.state.endTime}</Text>
-                                <Icon name='arrow-down' />
-                            </Button>
-                            <DateTimePicker
-                                isVisible={this.state.isEndTimePickerVisible}
-                                onConfirm={this._handleEndTime}
-                                onCancel={this._hideEndTimePicker}
-                                mode='time'
-                            />
+                            <Col>
+                                <Label>ปลายทาง</Label>
+                            </Col>
+                            <Col>
+                                <Button iconRight transparent onPress={this._showEndDatePicker}>
+                                    <Text>{this.state.endDate}</Text>
+                                    <Icon name='arrow-down' />
+                                </Button>
+                                <DateTimePicker
+                                    isVisible={this.state.isEndDatePickerVisible}
+                                    onConfirm={this._handleEndDate}
+                                    onCancel={this._hideEndDatePicker}
+                                />
+                                <Button iconRight transparent onPress={this._showEndTimePicker}>
+                                    <Text>{this.state.endTime}</Text>
+                                    <Icon name='arrow-down' />
+                                </Button>
+                                <DateTimePicker
+                                    isVisible={this.state.isEndTimePickerVisible}
+                                    onConfirm={this._handleEndTime}
+                                    onCancel={this._hideEndTimePicker}
+                                    mode='time'
+                                />
+                            </Col>
+
                         </Item>
+
                     </Form>
                     <Text />
                     <H3 style={styles.head}>ช่วงราคา</H3>
                     <Form>
+
                         <Item>
-                            <Label>เริ่มต้น</Label>
-                            <Input
-                                placeholder='บาท'
-                                onChangeText={(text) => this.setState({ startPrice: text })}
-                                value={this.state.startPrice} />
+                            <Left>
+                                <Label>เริ่มต้น</Label>
+                            </Left>
+                            <Right>
+                                <Input
+                                    placeholder='บาท'
+                                    onChangeText={(text) => this.setState({ startPrice: text })}
+                                    value={this.state.startPrice} />
+                            </Right>
                         </Item>
                         <Item>
-                            <Label>ถึง</Label>
-                            <Input
-                                placeholder='บาท'
-                                onChangeText={(text) => this.setState({ endPrice: text })}
-                                value={this.state.endPrice} />
+                            <Left>
+                                <Label>ถึง</Label>
+                            </Left>
+                            <Right>
+                                <Input
+                                    placeholder='บาท'
+                                    onChangeText={(text) => this.setState({ endPrice: text })}
+                                    value={this.state.endPrice} />
+                            </Right>
                         </Item>
+
                     </Form>
                     <H3 style={styles.head}>สิ่งของที่จะขน</H3>
                     <Form>
-                        <Item>
-                            <Label>สิ่งของ</Label>
-                            <Input
-                                onChangeText={(text) => this.setState({ order: text })}
-                                value={this.state.order} />
-                        </Item>
-                        <Item>
-                            <Label>ขนาด</Label>
-                            <Input
-                                placeholder='ลบ.ซม.'
-                                onChangeText={(text) => this.setState({ size: text })}
-                                value={this.state.size} />
-                        </Item>
-                        <Item>
-                            <Label>น้ำหนัก</Label>
-                            <Input
-                                placeholder='กก.'
-                                onChangeText={(text) => this.setState({ weight: text })}
-                                value={this.state.weight} />
-                        </Item>
+                        <Right>
+                            <Item>
+                                <Left>
+                                    <Label>สิ่งของ</Label>
+                                </Left>
+                                <Right>
+                                    <Input
+                                        onChangeText={(text) => this.setState({ order: text })}
+                                        value={this.state.order} />
+                                </Right>
+                            </Item>
+                            <Item>
+                                <Left>
+                                    <Label>ขนาด</Label>
+                                </Left>
+                                <Right>
+                                    <Input
+                                        placeholder='ลบ.ซม.'
+                                        onChangeText={(text) => this.setState({ size: text })}
+                                        value={this.state.size} />
+                                </Right>
+                            </Item>
+                            <Item>
+                                <Left>
+                                    <Label>น้ำหนัก</Label>
+                                </Left>
+                                <Right>
+                                    <Input
+                                        placeholder='กก.'
+                                        onChangeText={(text) => this.setState({ weight: text })}
+                                        value={this.state.weight} />
+                                </Right>
+                            </Item>
+                        </Right>
                     </Form>
                     <Text />
 

@@ -6,6 +6,8 @@ import {
     StyleSheet
 } from "react-native";
 
+import { JobPostingMockData } from '../../mock/JobPosting.mocked.model'
+
 import {
     Container,
     Header,
@@ -51,6 +53,21 @@ class MenuScreen extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation;
+        const JobPostings = JobPostingMockData.map((jobPosting, key) => {
+            return (
+                <ListItem icon id={key}>
+                    <Left>
+                        <Button style={{ backgroundColor: "#8F8E93" }}>
+                            <Icon active name="images" />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Text>{jobPosting.jobType}</Text>
+                    </Body>
+
+                </ListItem>
+            )
+        })
         return (
             <Container style={styles.container}>
                 <Content>
@@ -70,28 +87,14 @@ class MenuScreen extends React.Component {
                     <ListItem itemDivider>
                         <Text>ประกาศงาน</Text>
                     </ListItem>
-                    <ListItem icon>
-                        <Left>
-                            <Button style={{ backgroundColor: "#8F8E93" }}>
-                                <Icon active name="images" />
-                            </Button>
-                        </Left>
-                        <Body>
-                            <Text>ขนส่งทั่วไป</Text>
-                        </Body>
-                        <Right>
-                            <Badge style={{ backgroundColor: "#FD3C2D" }}>
-                                <Text>2</Text>
-                            </Badge>
-                        </Right>
-                    </ListItem>
+                    {JobPostings}
                     <ListItem icon last
                         onPress={() =>
                             navigate('AddJobPost')
                         }>
                         <Left>
-                            <Button style={{ backgroundColor: "#FD3C2D" }}>
-                                <Icon active name="images" />
+                            <Button success>
+                                <Icon active name="add" />
                             </Button>
                         </Left>
                         <Body>
@@ -205,7 +208,7 @@ class MenuScreen extends React.Component {
                     <Separator bordered />
                     <ListItem>
                         <Body style={{ alignItems: 'center' }}>
-                            <Text  style={{ color: '#FD3C2D' }}>ออกจากระบบ</Text>
+                            <Text style={{ color: '#FD3C2D' }}>ออกจากระบบ</Text>
                         </Body>
                     </ListItem>
                 </Content>

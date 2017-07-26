@@ -80,7 +80,6 @@ class AddJobPostingScreen extends React.Component {
             return (<Row id={k}>{s}</Row>)
         });
 
-        console.log('render');
         return (
             <Container style={styles.container}>
                 <Content>
