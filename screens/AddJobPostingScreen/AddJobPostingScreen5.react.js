@@ -52,13 +52,11 @@ class AddJobPostingScreen5 extends React.Component {
 
     render() {
         const { navigate, goBack } = this.props.navigation
-        const navigateAction = NavigationActions.navigate({
-
-            routeName: 'Menu',
-
-            params: {},
-
-            action: NavigationActions.navigate({ routeName: 'Menu' })
+        const resetAction = NavigationActions.reset({
+            index: 0,
+            actions: [
+                NavigationActions.navigate({ routeName: 'Main' })
+            ]
         })
 
         return (
@@ -68,17 +66,17 @@ class AddJobPostingScreen5 extends React.Component {
                     <Body>
                         <Grid>
                             <Col>
-                            <Right>
-                                <Text>ประเภทงาน</Text>
-                                <Text note>ประเภทรถ</Text>
-                                <Text note>ต้นทาง</Text>
-                                <Text note>ปลายทาง</Text>
-                                <Text note>วัน/เวลา ที่ถึงตันทาง</Text>
-                                <Text note>วัน/เวลา ที่ถึงปลายทาง</Text>
-                                <Text note>ช่วงราคา</Text>
-                                <Text note>สิ่งของที่จะขน</Text>
-                                <Text note>ขนาด</Text>
-                                <Text note>น้ำหนัก</Text>
+                                <Right>
+                                    <Text>ประเภทงาน</Text>
+                                    <Text note>ประเภทรถ</Text>
+                                    <Text note>ต้นทาง</Text>
+                                    <Text note>ปลายทาง</Text>
+                                    <Text note>วัน/เวลา ที่ถึงตันทาง</Text>
+                                    <Text note>วัน/เวลา ที่ถึงปลายทาง</Text>
+                                    <Text note>ช่วงราคา</Text>
+                                    <Text note>สิ่งของที่จะขน</Text>
+                                    <Text note>ขนาด</Text>
+                                    <Text note>น้ำหนัก</Text>
                                 </Right>
                             </Col>
                             <Col>
@@ -104,9 +102,16 @@ class AddJobPostingScreen5 extends React.Component {
                         style={{ backgroundColor: "#80C67D" }}
                         onPress={() => {
                             JobPostingMockData.push(this.state)
-                            this.props.navigation.dispatch(navigateAction)
+                            this.props.navigation.dispatch(resetAction)
                         }}>
                         <H3 style={{ color: "#fff" }}>สร้างประกาศงาน</H3>
+                    </Button>
+                    <Text style={{ paddingTop: 20 }} />
+                    <Button transparent
+                        onPress={() => {
+                            this.props.navigation.dispatch(resetAction)
+                        }}>
+                        <H3 style={{ color: "#404040", textAlign: 'center' }}>ยกเลิก</H3>
                     </Button>
                 </Content>
             </Container>

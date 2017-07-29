@@ -10,6 +10,7 @@ import AddJobPostingScreen3 from '../screens/AddJobPostingScreen/AddJobPostingSc
 import AddJobPostingScreen4 from '../screens/AddJobPostingScreen/AddJobPostingScreen4.react';
 import AddJobPostingScreen5 from '../screens/AddJobPostingScreen/AddJobPostingScreen5.react';
 //import HomeScreen from '../screens/HomeScreen';
+console.disableYellowBox = true;
 
 const RootStackNavigator = StackNavigator(
   {

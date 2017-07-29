@@ -200,7 +200,7 @@ class AddJobPostingScreen3 extends React.Component {
                     </Form>
                     <H3 style={styles.head}>สิ่งของที่จะขน</H3>
                     <Form>
-                        <Right>
+
                             <Item>
                                 <Left>
                                     <Label>สิ่งของ</Label>
@@ -233,7 +233,7 @@ class AddJobPostingScreen3 extends React.Component {
                                         value={this.state.weight} />
                                 </Right>
                             </Item>
-                        </Right>
+
                     </Form>
                     <Text />
 

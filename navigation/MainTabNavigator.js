@@ -8,22 +8,23 @@ import { TabNavigator, TabBarBottom } from 'react-navigation'
 
 import Colors from '../constants/Colors'
 
-import HomeScreen from '../screens/HomeScreen'
-import LinksScreen from '../screens/LinksScreen'
+import JobPostingScreen from '../screens/JobPostingScreen'
+import UserScreen from '../screens/UserScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import MenuScreen from '../screens/MenuScreen/MenuScreen.react'
 import WallScreen from '../screens/WallScreen'
 
 export default TabNavigator(
   {
+    
     Wall: {
       screen: WallScreen
     },
-    Home: {
-      screen: HomeScreen,
+    JobPost: {
+      screen: JobPostingScreen,
     },
-    Links: {
-      screen: LinksScreen,
+    User: {
+      screen: UserScreen,
     },
     Settings: {
       screen: SettingsScreen,
@@ -40,14 +41,14 @@ export default TabNavigator(
         let iconName;
 
         switch (routeName) {
-          case 'Wall':
+          case 'JobPost':
+            iconName = 'flag';
+            break;
+            case 'Wall':
             iconName = 'newspaper-o';
             break;
-          case 'Home':
-            iconName = 'users';
-            break;
-          case 'Links':
-            iconName = 'comments';
+          case 'User':
+            iconName = 'user';
             break;
           case 'Settings':
             iconName = 'inbox';
